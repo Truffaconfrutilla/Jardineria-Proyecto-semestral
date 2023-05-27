@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Jardín Vecinal</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="{% static 'core\assets\img\faviconflower.png' %}">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="{% static 'core/assets/css/all.min.css' %}">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="{% static 'core/assets/bootstrap/css/bootstrap.min.css' %}">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="{% static 'core/assets/css/owl.carousel.css' %}">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="{% static 'core/assets/css/magnific-popup.css' %}">
+	<!-- animate css -->
+	<link rel="stylesheet" href="{% static 'core/assets/css/animate.css' %}">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="{% static 'core/assets/css/meanmenu.min.css' %}">
+	<!-- main style -->
+	<link rel="stylesheet" href="{% static 'core/assets/css/main.css' %}">
+	<!-- responsive -->
+	<link rel="stylesheet" href="{% static 'core/assets/css/responsive.css' %}">
+
+
+
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+	
+	<!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="{% url 'index' %}">
+								<img src="{% static 'core\assets\img\logoedit.png' %}" alt="">
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li><a href="{% url 'index' %}">Inicio</a></li>
+								<li><a href="{% url 'about' %}">¿Quiénes somos?</a></li>												
+								<li><a href="{% url 'contact' %}">Contáctanos</a></li>
+								<li><a href="{% url 'shop' %}">Tienda</a>
+									{% if user.is_authenticated %}	
+										<ul class="sub-menu">		 																
+											<li><a href="{% url 'cart' %}">Carrito</a></li>
+											<li><a href="{% url 'checkout' %}">Verificar pedido</a></li>										
+										</ul>
+									{% endif %}	
+								</li>
+								<li><a href="{% url 'news' %}">Blog</a></li>		
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
+										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										{% if user.is_authenticated %}										
+										<a class="user-circle" href="{% url 'logout' %}"><i class="fa fa-minus-circle" aria-hidden="true"> Cerrar Sesión</i></a>
+										{% else %}
+										<a class="user-circle" href="{% url 'login' %}"><i class="fa fa-user-circle" aria-hidden="true"> Iniciar Sesión</i></a>
+										{% endif %}
+									</div>
+								</li>
+							</ul>
+						</nav>
+						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>¿Qué estas buscando?:</h3>
+							<input type="text" placeholder="">
+							<button type="submit">Buscar <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa -->
+    
+	<!-- INICIO CONTENIDO  -->
+    {% block  contenido %}
+
+    {% endblock %}
+    <!-- FIN CONTENIDO  -->
+	
+	<!-- footer -->
+	<div class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box about-widget">
+						<h2 class="widget-title">¿Quiénes somos?</h2>
+						<p>Somos una marca sin fines de lucro que apoya a la comunidad local de comerciantes y artesanos. Encuentra en nuestra página web una variedad de productos artesanales elaborados por los vecinos. Tu compra apoya a los artesanos y la economía local. ¡Gracias por tu apoyo!</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box get-in-touch">
+						<h2 class="widget-title">Contáctanos</h2>
+						<ul>
+							<li>Calle falsa 123, Santiago, Chile.</li>
+							<li>jardinvecinal@proyecto.com</li>
+							<li>+56 9 2048 8261</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box pages">
+						<h2 class="widget-title">Enlaces rápidos</h2>
+						<ul>
+							<li><a href="{% url 'index' %}">Inicio</a></li>
+							<li><a href="{% url 'about' %}">Sobre nosotros</a></li>
+							<li><a href="{% url 'shop' %}">Tienda</a></li>
+							<li><a href="{% url 'contact' %}">Contáctanos</a></li>
+							<li><a href="#">Soporte</a></li>
+							<li><a href="#">Terminos y Condiciones</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box subscribe">
+						<h2 class="widget-title">Subscribete !</h2>
+						<p>¡ Y obtén un 5% de descuento en todas tus compras !</p>
+						<form action="index.html">
+							<input type="email" placeholder="Email">
+							<button type="submit"><i class="fas fa-paper-plane"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end footer -->
+	
+
+	<!-- jquery -->
+	<script src="{% static 'core/assets/js/jquery-1.11.3.min.js' %}"></script>
+	<!-- bootstrap -->
+	<script src="{% static 'core/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- count down -->
+	<script src="{% static 'core/assets/js/jquery.countdown.js' %}"></script>
+	<!-- isotope -->
+	<script src="{% static 'core/assets/js/jquery.isotope-3.0.6.min.js' %}"></script>
+	<!-- waypoints -->
+	<script src="{% static 'core/assets/js/waypoints.js' %}"></script>
+	<!-- owl carousel -->
+	<script src="{% static 'core/assets/js/owl.carousel.min.js' %}"></script>
+	<!-- magnific popup -->
+	<script src="{% static 'core/assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<!-- mean menu -->
+	<script src="{% static 'core/assets/js/jquery.meanmenu.min.js' %}"></script>
+	<!-- sticker js -->
+	<script src="{% static 'core/assets/js/sticker.js' %}"></script>
+	<!-- main js -->
+	<script src="{% static 'core/assets/js/main.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- register js -->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+{% block js %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags  %}
+{% block css %}
+{% endblock %}
+{% block  contenido %}
+	<!------ register ---------->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<section class="h-150" style="background-color: #091820;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100" style="margin-top:70px ;">
+            <div class="col-xl-8">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="card-body p-md-5 mx-md-4">
+                            <div class="text-center">
+                                <img src="{% static 'core\assets\img\logoedit.png' %}" alt="">                    
+                            </div>
+                            <div class="container">                                
+                                <div >                                
+                                    <article class="card-body mx-auto" style="max-width: 400px;">
+                                        <h4 class="card-title mt-3 text-center">Crea tu cuenta</h4>
+                                        <p class="text-center">Es gratis ! </p>
+                                        <form class="form" method="POST">                                            
+                                            {% csrf_token %}
+                                            {{ form | crispy }}    
+                                            <button type="submit" id="submit" class="btn btn-primary btn-block"> Crear cuenta  </button>                                                                                          
+                                        </form>
+                                        <p class="text-center">Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia Sesión</a> </p>                                                                 
+                                    </article>
+                                </div>
+                            </div> 
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+{% block js %}
+{% endblock %}

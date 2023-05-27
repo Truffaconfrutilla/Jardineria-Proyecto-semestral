@@ -1,0 +1,385 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block contenido %}
+
+
+	<!-- home page slider -->
+	<div class="homepage-slider">
+		<!-- single home slider flores-->
+		<div class="single-homepage-slider homepage-bg-1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">LLENA DE COLOR TU HOGAR </p>
+								<h1>Hermosas Flores de Temporada</h1>
+								<div class="hero-btns">
+									<a href="{% url 'shop' %}" class="boxed-btn">Comprar</a>
+									<a href="{% url 'contact' %}" class="bordered-btn">Contáctanos</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- single home slider maceteros -->
+		<div class="single-homepage-slider homepage-bg-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1 text-center">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">ARTESANALES Y ECO-FRIENDLY</p>
+								<h1>Maceteros y Decoraciones</h1>
+								<div class="hero-btns">
+									<a href="{% url 'shop' %}" class="boxed-btn">Comprar</a>
+									<a href="{% url 'contact' %}" class="bordered-btn">Contáctanos</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- single home slider herramientas-->
+		<div class="single-homepage-slider homepage-bg-3">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1 text-right">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">LAS MEJORES OPCIONES</p>
+								<h1>Artículos de Jardinería</h1>
+								<div class="hero-btns">
+									<a href="{% url 'shop' %}" class="boxed-btn">Comprar</a>
+									<a href="{% url 'contact' %}" class="bordered-btn">Contáctanos</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- single home slider arboles y arbustos -->
+		<div class="single-homepage-slider homepage-bg-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1 text-center">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">PARA TODOS LOS GUSTOS</p>
+								<h1>Árboles y Arbustos</h1>
+								<div class="hero-btns">
+									<a href="{% url 'shop' %}" class="boxed-btn">Comprar</a>
+									<a href="{% url 'contact' %}" class="bordered-btn">Contáctanos</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- end home page slider -->
+
+	<!-- features list section simbolitos esos-->
+	<div class="list-section pt-80 pb-80">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-shipping-fast"></i>
+						</div>
+						<div class="content">
+							<h3>Envio gratis</h3>
+							<p>R.M por compras superiores a $20.000</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-phone-volume"></i>
+						</div>
+						<div class="content">
+							<h3>Soporte Télefonico</h3>
+							<p>Te ayudamos con tus dudas</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="list-box d-flex justify-content-start align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-sync"></i>
+						</div>
+						<div class="content">
+							<h3>Reembolso</h3>
+							<p>¡Te reembolsamos por productos de jardíneria dañados!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end features list section -->
+
+	<!-- product section -->
+	<div class="product-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">Nuestros</span> Productos</h3>
+						<p>Lo mejor de nuestra comunidad.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/macetero.jfif' %}" alt=""></a>
+						</div>
+						<h3>Maceteros</h3>
+						<p class="product-price"><span>Per Kg</span> 85$ </p>
+						<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/tierra.jfif' %}" alt=""></a>
+						</div>
+						<h3>Tierra de hojas</h3>
+						<p class="product-price"><span>Per Kg</span> 70$ </p>
+						<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/tierra_2.jfif' %}" alt=""></a>
+						</div>
+						<h3>Tierra 2</h3>
+						<p class="product-price"><span>Per Kg</span> 35$ </p>
+						<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end product section -->
+
+	<!-- cart banner section -->
+	<section class="cart-banner pt-100 pb-100">
+    	<div class="container">
+        	<div class="row clearfix">
+            	<!--Image Column-->
+            	<div class="image-column col-lg-6">
+                	<div class="image">
+                    	<div class="price-box">
+                        	<div class="inner-price">
+                                <span class="price">
+                                    <strong>30%</strong> <br> de Descuento!
+                                </span>
+                            </div>
+                        </div>
+                    	<img src="{% static 'core/assets/img/Set_herramientas.jfif' %}" alt="">
+                    </div>
+                </div>
+                <!--Content Column-->
+                <div class="content-column col-lg-6">
+					<h3><span class="orange-text">Oferta</span> del mes</h3>
+                    <h4>Set de herramientas para el jardin</h4>
+                    <div class="text">Un set de herramientas completo que trae: Rastrillos, mini palas, tijeras, rociadores, Un delantal para poder llevar las herramientas, Guantes para la seguridad del usuario y mucho mas! Con un 30% de descuento por tiempo limitado</div>
+                    <!--Countdown Timer-->
+                    <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2023/07/01"><div class="counter-column"><div class="inner"><span class="count">00</span>Days</div></div> <div class="counter-column"><div class="inner"><span class="count">00</span>Hours</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Mins</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Secs</div></div></div></div>
+                	<a href="{% url 'cart' %}" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end cart banner section -->
+
+	<!-- testimonail-section -->
+	<div class="testimonail-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1 text-center">
+					<div class="testimonial-sliders">
+						<div class="single-testimonial-slider">
+							<div class="client-avater">
+								<img src="{% static 'core/assets/img/avaters/avatar1.png' %}" alt="">
+							</div>
+							<div class="client-meta">
+								<h3>Saira Hakim <span>Emprendedora</span></h3>
+								<p class="testimonial-body">
+									" Exelentes ofertas y alternativas para comenzar a darle un nuevo aire a tu espacio. ¡Compre unas calas para mi jardín y estoy muy feliz con el resultado!"
+								</p>
+								<div class="last-icon">
+									<i class="fas fa-quote-right"></i>
+								</div>
+							</div>
+						</div>
+						<div class="single-testimonial-slider">
+							<div class="client-avater">
+								<img src="{% static 'core/assets/img/avaters/avatar2.png' %}" alt="">
+							</div>
+							<div class="client-meta">
+								<h3>David Niph <span>Dueño de Florería local</span></h3>
+								<p class="testimonial-body">
+									" Cuando escuche de este proyecto no me imaginaba lo que traería consigo. Los artesanos locales han demostrado una vez mas sus habilidades y estoy mas que seguro que volvere a comprar los maceteros de don José. Totalmente recomendados. "
+								</p>
+								<div class="last-icon">
+									<i class="fas fa-quote-right"></i>
+								</div>
+							</div>
+						</div>
+						<div class="single-testimonial-slider">
+							<div class="client-avater">
+								<img src="{% static 'core/assets/img/avaters/avatar3.png' %}" alt="">
+							</div>
+							<div class="client-meta">
+								<h3>Jacob Sikim <span>Estudiante</span></h3>
+								<p class="testimonial-body">
+									" No soy un entendido en las flores, pero este proyecto le ha devuelto la sonrisa a mi madre. Verla feliz cuidando de sus flores para venderlas no tiene precio. ¡Gracias por la oportunidad! "
+								</p>
+								<div class="last-icon">
+									<i class="fas fa-quote-right"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end testimonail-section -->
+	
+	<!-- advertisement section -->
+	<div class="abt-section mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<div class="abt-bg">
+						<a href="https://www.youtube.com/watch?v=bvCsTca0uBc" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12">
+					<div class="abt-text">
+						<p class="top-sub">Un proyecto especial</p>
+						<h2>Somos <span class="orange-text">Jardín Vecinal</span></h2>
+						<p>Somos una marca sin fines de lucro que tiene como objetivo apoyar y promover a la comunidad de comerciantes y artesanos locales. En nuestra página web, encontrarás una amplia variedad de productos artesanales elaborados por los vecinos de nuestra comunidad. Al adquirir alguno de nuestros productos, estás apoyando directamente a los artesanos y contribuyendo al desarrollo de la economía local.</p></p>
+						<p>Nuestro objetivo es promover la práctica de la jardinería sostenible y ofrecer productos que sean seguros para el medio ambiente y para tu jardín. Todos nuestros productos están diseñados para ser eficientes y sostenibles, y están elaborados con materiales naturales y renovables. Si tienes alguna pregunta sobre nuestros productos, no dudes en contactarnos a través de la sección de contacto de nuestra página web. ¡Gracias por ser parte del cambio hacia una jardinería más sostenible y amigable con el medio ambiente!</p>
+						<a href="{% url 'about' %}" class="boxed-btn mt-4">Conócenos</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end advertisement section -->
+
+	<!-- latest news -->
+	<div class="latest-news pt-150 pb-150">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">Nuestros</span> blogs</h3>
+						<p> No te preocupes. A nuestros colaboradores les encanta ayudarte con información importante para tu jardín, ¡date una vuelta por nuestros blogs! </p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="single-latest-news">
+						<a href="{% url 'singlenews' %}"><div class="latest-news-bg news-bg-1"></div></a>
+						<div class="news-text-box">
+							<h3><a href="{% url 'singlenews' %}">¿Comó hacer mermelada de frutillas casera?.</a></h3>
+							<p class="blog-meta">
+								<span class="author"><i class="fas fa-user"></i> Florencia</span>
+								<span class="date"><i class="fas fa-calendar"></i> 5 Abril, 2023</span>
+							</p>
+							<p class="excerpt">Bienvenidos al fascinante mundo de las mermeladas caseras. En este blog, te enseñaremos paso a paso cómo hacer una deliciosa y aromática mermelada de frutilla en la comodidad de tu propia cocina. Descubre los secretos de esta receta clásica y aprende técnicas sencillas para obtener una mermelada perfecta, llena de sabor y con la frescura de las frutillas. Ya sea que seas un aficionado culinario o un amante de los sabores caseros, te invitamos a sumergirte en esta maravillosa aventura de la mermelada de frutilla. ¡Prepárate para llenar tus desayunos y meriendas con el dulce encanto de esta exquisita conserva!</p>
+							<a href="{% url 'singlenews' %}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-latest-news">
+						<a href="{% url 'singlenews' %}"><div class="latest-news-bg news-bg-2"></div></a>
+						<div class="news-text-box">
+							<h3><a href="{% url 'singlenews' %}">Cultivo y alimentación sana</a></h3>
+							<p class="blog-meta">
+								<span class="author"><i class="fas fa-user"></i> Manuel</span>
+								<span class="date"><i class="fas fa-calendar"></i> 8 Febrero, 2023</span>
+							</p>
+							<p class="excerpt">En este blog, te guiaremos en el apasionante viaje de cultivar tus propios alimentos, desde huertos urbanos hasta técnicas de jardinería orgánica. También exploraremos recetas nutritivas y deliciosas que te ayudarán a aprovechar al máximo los frutos de tu labor. Acompáñanos mientras exploramos las maravillas de una vida conectada con la naturaleza y descubrimos cómo alimentarnos de forma sana y consciente. ¡Bienvenidos a esta aventura de bienestar y sostenibilidad!</p>
+							<a href="{% url 'singlenews' %}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
+					<div class="single-latest-news">
+						<a href="{% url 'singlenews' %}"><div class="latest-news-bg news-bg-3"></div></a>
+						<div class="news-text-box">
+							<h3><a href="{% url 'singlenews' %}">Secretos para el cuidado de tu parral.</a></h3>
+							<p class="blog-meta">
+								<span class="author"><i class="fas fa-user"></i> Don José</span>
+								<span class="date"><i class="fas fa-calendar"></i> 27 Marzo, 2023</span>
+							</p>
+							<p class="excerpt">Estas en el lugar ideal para descubrir todos los secretos y consejos necesarios para mantener tu parral en óptimas condiciones. Aquí encontrarás información valiosa sobre el cuidado adecuado de tus viñedos, desde la elección del terreno hasta la poda y la protección contra enfermedades. Te guiaremos paso a paso para que puedas disfrutar de una cosecha abundante y de uvas de calidad superior. Acompáñanos en esta emocionante travesía por el mundo de la viticultura y descubre cómo cuidar tu parral de manera experta. ¡Prepárate para disfrutar de la dulce recompensa de tus propios racimos de uvas!</p>
+							<a href="{% url 'singlenews' %}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<a href="{% url 'news' %}" class="boxed-btn">Más Blogs</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end latest news -->
+
+	<!-- logo carousel -->
+	<div class="logo-carousel-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="logo-carousel-inner">
+						<div class="single-logo-item">
+							<img src="{% static 'core/assets/img/company-logos/1.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'core/assets/img/company-logos/2.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'core/assets/img/company-logos/3.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'core/assets/img/company-logos/4.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'core/assets/img/company-logos/5.png' %}" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end logo carousel -->
+
+
+
+{% endblock %}
