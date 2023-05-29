@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'colorfield',
     'django.contrib.humanize',
     'crispy_forms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
