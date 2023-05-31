@@ -68,8 +68,7 @@
 								<li><a href="{% url 'shop' %}">Tienda</a>
 									{% if user.is_authenticated %}	
 										<ul class="sub-menu">		 																
-											<li><a href="{% url 'cart' %}">Carrito</a></li>
-											<li><a href="{% url 'checkout' %}">Verificar pedido</a></li>										
+											<li><a href="{% url 'cart' %}">Ver mi Carrito <i class="fas fa-shopping-cart"></i></a></li>														
 										</ul>
 									{% endif %}	
 								</li>

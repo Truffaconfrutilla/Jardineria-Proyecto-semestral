@@ -25,63 +25,31 @@
 				<div class="col-lg-8">
 					<div class="checkout-accordion-wrap">
 						<div class="accordion" id="accordionExample">
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingOne">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						          Dirección de facturación
-						        </button>
-						      </h5>
-						    </div>
 
-						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="billing-address-form">
-						        	<form action="index.html">
-						        		<p><input type="text" placeholder="Nombre"></p>
-						        		<p><input type="email" placeholder="Email"></p>
-						        		<p><input type="text" placeholder="Dirección"></p>
-						        		<p><input type="tel" placeholder="Telefono"></p>
-						        		<p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Agrega los comentarios que desees..."></textarea></p>
-						        	</form>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingTwo">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						          Dirección de envío
-						        </button>
-						      </h5>
-						    </div>
-						    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="shipping-address-form">
-						        	<p>Tu direccion de envio estará aquí</p>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingThree">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						          Detalles de pago
-						        </button>
-						      </h5>
-						    </div>
-						    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="card-details">
-						        	<p>Los detalles de tu pago estarán aquí</p>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
+							<div class="card single-accordion">								
+								<div class="card-header" id="headingOne">
+									<h5 class="mb-0">
+										<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Dirección de facturación
+										</button>
+									</h5>
+								</div>
+
+								<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="billing-address-form">
+											<form action="index.html">
+												<p><input type="text" placeholder="Nombre"></p>
+												<p><input type="email" placeholder="Email"></p>
+												<p><input type="text" placeholder="Dirección"></p>
+												<p><input type="tel" placeholder="Telefono"></p>
+												<p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Agrega los comentarios que desees..."></textarea></p>
+											</form>
+										</div>
+									</div>
+								</div>	
+							</div>
 						</div>
-
 					</div>
 				</div>
 
@@ -123,47 +91,85 @@
 								</tr>
 								<tr>
 									<td>Total</td>
-									<td>$240</td>
+									<td>{{ valor }}</td>
 								</tr>
 							</tbody>
-						</table>
-						<a href="#" class="boxed-btn">Finaliza tu orden</a>
+						</table>						
+						<p> <div id = "btnPaypal"> </div></p>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
 	<!-- end check out section -->
 
-	<!-- logo carousel -->
-	<div class="logo-carousel-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="logo-carousel-inner">
-						<div class="single-logo-item">
-							<img src="{% static 'core/assets/img/company-logos/1.png' %}" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="{% static 'core/assets/img/company-logos/2.png' %}" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="{% static 'core/assets/img/company-logos/3.png' %}" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="{% static 'core/assets/img/company-logos/4.png' %}" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="{% static 'core/assets/img/company-logos/5.png' %}" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end logo carousel -->
-
 	
 {% endblock %}
 {% block js %}
+
+
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+	paypal.Button.render({
+		env: 'sandbox',
+		client: {
+			sandbox: 'AYcvgb2D534oMvJJ0ZGmbEeJ_EAafGhwVJb_wyMT-Let1zUnF4FgaDIttmjz9wzLIW-5UE88ruDR8jGf',
+			production: 'demo_production_client_id'
+		},
+		locale: 'es_CL',
+		style: {
+			size: 'large',
+			color: 'gold',
+			shape: 'rect',
+		},
+		commit: true,
+		payment: function (data, actions) {
+			return actions.payment.create({
+				transactions: [{
+					amount: {
+						total: '{{ valor }}',
+						currency: 'USD'
+					}
+				}]
+			});
+		},
+		onAuthorize: function (data,actions) {
+			return actions.payment.execute().then(function () {
+				Swal.fire({
+					title: 'Confirmación',
+					text: 'Pago realizado correctamente!',
+					icon: 'success',
+					showCancelButton: false,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Confirmar'
+				})
+			});	
+		},
+		onCancel(data) {
+			Swal.fire({
+					title: 'Cancelado',
+					text: 'El pago fué cancelado!',
+					icon: 'error',
+					showCancelButton: false,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Confirmar'
+				});
+		},
+		onError(data) {
+			Swal.fire({
+					title: 'Error',
+					text: 'Hubo un error en el pago!',
+					icon: 'error',
+					showCancelButton: false,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Confirmar'
+				});
+		}
+	}, '#btnPaypal');
+</script>
+
 {% endblock %}
