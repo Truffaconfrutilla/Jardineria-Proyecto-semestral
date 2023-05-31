@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 # Create your models here.
 
 class TipoProducto(models.Model):
@@ -17,6 +17,9 @@ class Producto(models.Model):
     vencimiento = models.DateField()
     imagen = models.ImageField(null=True,blank=True)
     vigente = models.BooleanField()
+
+    def get_absolute_url(self):
+        return reverse('store:product_detail', args=[self.slug])
 
     def __str__(self):
         return self.nombre

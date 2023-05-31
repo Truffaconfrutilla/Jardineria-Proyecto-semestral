@@ -39,6 +39,7 @@ def index(request):
 def indexapi(request):
     #realizamos solicitud al API
     response = requests.get('http://127.0.0.1:8000/api/productos/')    
+    response2 = request.get('https://mindicador.cl/api/')    
     #page = request.GET.get('page', 1) # OBTENEMOS LA VARIABLE DE LA URL, SI NO EXISTE NADA DEVUELVE 1    
     #try:
     #    paginator = Paginator(productosAll, 5)
@@ -46,12 +47,16 @@ def indexapi(request):
     #except:
     #    raise Http404
 
-    data = response.json()
     #transforma json para leerlo
+    productos = response.json()
+    monedas = response2.json()
     
     data = {
-        'listado': response,
+        'listado': productos,
+        'monedas': monedas,
+        
     #    'paginator': paginator
+        
     }
     return render(request, 'core/index.html', data)
 
@@ -94,6 +99,15 @@ def about (request):
 
 @login_required
 def cart (request):
+    response = requests.get('https://mindicador.cl/api/dolar')  
+    moneda = response.json()
+    valor_dolar = moneda['serie'][0]['valor'] #Valor dolar actual
+    total_carrito = 10000 #aca se supone que suma los valores en el carrito
+    valor = total_carrito/valor_dolar #precio transformado a dolar
+    valor = round(valor,2) #se redondea valor a 2 decimales
+    data = {
+        'valor': valor
+    }
     return render (request, 'core/cart.html')
 
 @login_required
@@ -137,4 +151,3 @@ def register (request):
     
 def registercomplete (request):
     return render (request, 'registration/registercomplete.html')
-    
