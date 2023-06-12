@@ -24,7 +24,7 @@ urlpatterns = [
     path('singleproduct/', singleproduct, name ="singleproduct"),
 
     #perfil
-    ##path('micuenta/', micuenta, name ="micuenta"),
+    path('profile/', profile, name ="profile"),
 
     #register
     path('login/', login, name ="login"),

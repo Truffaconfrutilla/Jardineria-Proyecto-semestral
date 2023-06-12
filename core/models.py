@@ -13,8 +13,7 @@ class Producto(models.Model):
     precio = models.IntegerField()
     stock = models.IntegerField()
     descripcion = models.CharField(max_length=255)
-    tipo = models.ForeignKey(TipoProducto, on_delete=models.CASCADE)
-    vencimiento = models.DateField()
+    tipo = models.ForeignKey(TipoProducto, on_delete=models.CASCADE)   
     imagen = models.ImageField(null=True,blank=True)
     vigente = models.BooleanField()
 

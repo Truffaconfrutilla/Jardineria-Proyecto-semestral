@@ -147,8 +147,8 @@ def shop_api (request):
 
 #---PERFIL
 
-def micuenta (request):
-    return render (request, 'core/mi-cuenta.html')
+def profile (request):
+    return render (request, 'core/profile.html')
 
 
 
