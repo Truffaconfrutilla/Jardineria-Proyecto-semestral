@@ -74,17 +74,36 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Florculia.wsgi.application'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default' : {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME' : 'florculia',
+        'HOST' : 'localhost',
+        'PORT' : '3306',
+        'USER' : 'root',
+        'PASSWORD' : '',
     }
 }
+#python manage.py mankemigrations y dps migrate
+
+# PYTHON MANAGE.PY MAKEMIGRATIONS
+# PYTHON MANAGE.PY MIGRATE
+# python manage.py createsuperuser
 
 
 # Password validation
