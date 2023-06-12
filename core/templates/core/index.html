@@ -3,6 +3,29 @@
 {% block css %}
 {% endblock %}
 {% block  contenido %}
+{% block js %}
+
+<script>
+	function eliminarProducto(id){
+		Swal.fire({
+			"title": "¿Estas seguro?",
+			"text": "esta acción no se puede deshacer",
+			"icon": "question",
+			"showCancelButton": true,
+			"cancelButtonText": "no, cancelar",
+			"confirmButtonText": "Si, eliminar",
+			"reverseButtons": true,
+			"confirmButtonColor": "#dc3545"
+		})
+		.then(function(result){
+			if(result.isConfirmed){
+				window.location.href = "/delete/"+id+"/"
+			}
+		})
+	}
+</script>
+
+{% endblock %}
 
 	<!-- home page slider -->
 	<div class="homepage-slider">
@@ -125,12 +148,10 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<!-- end features list section -->
 
-	<!-- product section -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
 			<div class="row">
@@ -141,41 +162,39 @@
 					</div>
 				</div>
 			</div>
-
+	
 			<div class="row">
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/macetero.jfif' %}" alt=""></a>
+				{% if not  listaProducto %}
+				<div class="col-12">No tenemos productos disponibles, llama a servicio al cliente para mayor informacion. Puedes <a href="{% url 'contact' %}">Contactarnos</a> para ofrecerte ayuda  o  ir al <a href="{% url 'index' %}">Inicio.</a></div>
+				{% else %}	
+			{% for aux in listaProducto %}
+				{% if aux.stock >= 0 %}
+					<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item">
+							<div class="product-image">
+								<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/macetero.jfif' %}" alt=""></a>
+							</div>
+							<h3>{{ aux.nombre }}</h3>
+							<div class="pricing">
+								{% if aux.stock > 0 %}
+									<p>Stock: {{ aux.stock }}</p>
+								{% else %}
+									<p>Stock: Producto agotado</p>
+								{% endif %}
+								<p class="price"><span class="mr-2 price-dc">${{ aux.precio }}</span></p>
+							</div>
+							<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i></a>
+							<a href="{% url 'update' aux.id %}" class="cart-btn mt-3"><i class="fas fa-edit"></i></a>
+							<a href="#" onclick="eliminarProducto({{ aux.id }})" class="cart-btn mt-3"><i class="fas fa-trash-alt"></i></a>
 						</div>
-						<h3>Maceteros</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/tierra.jfif' %}" alt=""></a>
-						</div>
-						<h3>Tierra de hojas</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/tierra_2.jfif' %}" alt=""></a>
-						</div>
-						<h3>Tierra 2</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
+				{% endif %}
+			{% endfor %}
 			</div>
+			{% endif %}
 		</div>
 	</div>
+	
 	<!-- end product section -->
 
 	<!-- cart banner section -->
@@ -381,6 +400,6 @@
 	</div>
 	<!-- end logo carousel -->
 
-	{% endblock %}
-	{% block js %}
-	{% endblock %}
+
+
+{% endblock %}

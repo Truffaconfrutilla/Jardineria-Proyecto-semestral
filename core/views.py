@@ -9,7 +9,6 @@ from django.http import Http404
 from rest_framework import viewsets
 from .serializers import *
 import requests
-
 # Create your views here.
 
 # view que se encarga de trasformar la data
@@ -20,23 +19,9 @@ class ProductoViewset(viewsets.ModelViewSet):
 class TipoProductoViewset(viewsets.ModelViewSet):
     queryset = TipoProducto.objects.all()
     serializer_class = TipoProductoSerializer
-    
-# LISTADO DE PRODUCTOS EN INDEX
-def index(request):
-    productosAll = Producto.objects.all() # SELECT * FROM producto    
-    page = request.GET.get('page', 1) # OBTENEMOS LA VARIABLE DE LA URL, SI NO EXISTE NADA DEVUELVE 1    
-    try:
-        paginator = Paginator(productosAll, 5)
-        productosAll = paginator.page(page)
-    except:
-        raise Http404
-    data = {
-        'listado': productosAll,
-        'paginator': paginator
-    }
-    return render(request, 'core/index.html', data)
 
-def indexapi(request):
+
+def shop_api(request):
     #realizamos solicitud al API
     response = requests.get('http://127.0.0.1:8000/api/productos/')    
     response2 = request.get('https://mindicador.cl/api/')    
@@ -53,17 +38,30 @@ def indexapi(request):
     
     data = {
         'listado': productos,
-        'monedas': monedas,
-        
+        'monedas': monedas,        
     #    'paginator': paginator
         
     }
+    return render(request, 'core/shop.html', data)
+
+
+# LISTADO LOS PRODUCTOS EN SHOP
+def shop(request):
+    productosAll = Producto.objects.all() # SELECT * FROM producto
+    data = {
+        'listaProducto' : productosAll
+    }
+    return render(request, 'core/shop.html', data)
+
+# LISTADO DE PRODUCTOS EN INDEX
+def index(request):
+    productosAll = Producto.objects.all() # SELECT * FROM producto
+    data = {
+        'listaProducto' : productosAll
+    }
     return render(request, 'core/index.html', data)
 
-
-
 #CRUD
-#AGREGAR
 def add(request):
     data = {
         'form' : ProductoForm()
@@ -72,30 +70,50 @@ def add(request):
         formulario = ProductoForm(request.POST) # CAPTURAMOS LA INFO DEL FORMULARIO
         if formulario.is_valid():
             formulario.save() # INSERT INTO producto VALUES()
-            data['msj'] = "Producto guardado correctamente"
-#ACTUALIZAR
+            messages.success(request, "Producto agregado Correctamente")
+        else:
+            data["form"] = formulario
+  
+    return render(request, 'core/add-product.html', data)
+
 def update(request, id):
     producto = Producto.objects.get(id=id) # SELECT CON WHERE (BUSCAR)
     data = {
         'form' : ProductoForm(instance=producto)
     }
     if request.method == 'POST':
-        formulario = ProductoForm(data=request.POST, instance=producto, files=request.FILES) 
+        formulario = ProductoForm(data=request.POST, instance=producto) 
         if formulario.is_valid():
             formulario.save() # INSERT INTO producto VALUES()
             messages.success(request, "Producto modificado correctamente")
-            data['form'] = formulario # MOSTRAR EN LA VISTA LOS CAMBIOS
+            return redirect(to="index")
+        data['form'] = formulario # MOSTRAR EN LA VISTA LOS CAMBIOS
 
     return render(request, 'core/update-product.html', data)
-#ELIMINAR
+
 def delete(request, id):
     producto = Producto.objects.get(id=id) # SELECT CON WHERE (BUSCAR)
     producto.delete()
-
+    messages.success(request,"Producto eliminado correctamente")
     return redirect(to="index")
+
+#----- PAGINAS DEFAULT
 
 def about (request):
     return render (request, 'core/about.html')
+
+
+def contact (request):
+    return render (request, 'core/contact.html')
+
+def news (request):
+    return render (request, 'core/news.html')
+
+def singlenews (request):
+    return render (request, 'core/single-news.html')
+
+
+#---COMPRAS
 
 @login_required
 def cart (request):
@@ -110,29 +128,34 @@ def cart (request):
     }
     return render (request, 'core/cart.html')
 
+
 @login_required
 def checkout (request):
     return render (request, 'core/checkout.html')
 
-def contact (request):
-    return render (request, 'core/contact.html')
-
-def news (request):
-    return render (request, 'core/news.html')
-
-def shop (request):
-    return render (request, 'core/shop.html')
-
-def singlenews (request):
-    return render (request, 'core/single-news.html')
 
 def singleproduct (request):
     return render (request, 'core/single-product.html')
 
+def datoscompra (request):
+    return render (request, 'core/datos-compra.html')
+
+
+def shop_api (request):
+    return render (request, 'core/shop_api.html')
+
+
+#---PERFIL
+
+def micuenta (request):
+    return render (request, 'core/mi-cuenta.html')
 
 
 
-# REGISTRATION
+
+
+# ---REGISTRATION
+
 def login (request):
     return render (request, 'registration/login.html')
 
@@ -151,3 +174,4 @@ def register (request):
     
 def registercomplete (request):
     return render (request, 'registration/registercomplete.html')
+    

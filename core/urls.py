@@ -1,25 +1,30 @@
 from django.urls import path, include
 from .views import *
 from . import views
-from django. contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth.views import LoginView,LogoutView
 from rest_framework import routers
+
 
 #Para crear el api
 router = routers.DefaultRouter()
 router.register('productos', ProductoViewset)
 router.register('tipo_productos', TipoProductoViewset)
 
+
 urlpatterns = [
-    path('', index, name ="index"),
-    path('indexapi', indexapi, name ="indexapi"),
     path('about/', about, name ="about"),
     path('cart/', cart, name ="cart"),
     path('checkout/', checkout, name ="checkout"),
-    path('contact/', contact, name ="contact"),   
-    path('news', news, name ="news"),
-    path('shop', shop, name ="shop"),
-    path('singlenews', singlenews, name ="singlenews"),
-    path('singleproduct', singleproduct, name ="singleproduct"),
+    path('contact/', contact, name ="contact"),
+    path('', index, name ="index"),
+    path('news/', news, name ="news"),
+    path('shop/', shop, name ="shop"),
+    path('shop_api/', shop_api, name ="shop_api"),
+    path('singlenews/', singlenews, name ="singlenews"),
+    path('singleproduct/', singleproduct, name ="singleproduct"),
+
+    #perfil
+    ##path('micuenta/', micuenta, name ="micuenta"),
 
     #register
     path('login/', login, name ="login"),
@@ -30,6 +35,6 @@ urlpatterns = [
     path('add/', add, name="add"),
     path('update/<id>/', update, name="update"),
     path('delete/<id>/', delete, name="delete"),
-    #
+    #registramos la api
     path('api/', include(router.urls)),
 ]

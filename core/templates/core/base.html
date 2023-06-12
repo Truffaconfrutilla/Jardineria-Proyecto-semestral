@@ -68,7 +68,8 @@
 								<li><a href="{% url 'shop' %}">Tienda</a>
 									{% if user.is_authenticated %}	
 										<ul class="sub-menu">		 																
-											<li><a href="{% url 'cart' %}">Ver mi Carrito <i class="fas fa-shopping-cart"></i></a></li>														
+											<li><a href="{% url 'cart' %}">Carrito</a></li>
+											<li><a href="{% url 'checkout' %}">Verificar pedido</a></li>										
 										</ul>
 									{% endif %}	
 								</li>
@@ -158,17 +159,18 @@
 					<div class="footer-box subscribe">
 						<h2 class="widget-title">Subscribete !</h2>
 						<p>¡ Y obtén un 5% de descuento en todas tus compras !</p>
-						<form action="index.html">
+						<form action="{% url 'index' %}">
 							<input type="email" placeholder="Email">
 							<button type="submit"><i class="fas fa-paper-plane"></i></button>
+							
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
 	<!-- end footer -->
-	
 
 	<!-- jquery -->
 	<script src="{% static 'core/assets/js/jquery-1.11.3.min.js' %}"></script>
@@ -190,13 +192,25 @@
 	<script src="{% static 'core/assets/js/sticker.js' %}"></script>
 	<!-- main js -->
 	<script src="{% static 'core/assets/js/main.js' %}"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
 	<!-- register js -->
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
-{% block js %}
-{% endblock %}
+	<!-- sweetalert js -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	{% if messages %}
+	{% for m in messages %}
+		<script>
+				Swal.fire({
+					"tittle": "Felicitaciones",
+					"text": "{{m}}",
+					"icon": "success"
+				})
+		</script>
+	{% endfor %}
+	{% endif %}
+	{% block js %}
+	{% endblock %}
 
 </body>
 </html>

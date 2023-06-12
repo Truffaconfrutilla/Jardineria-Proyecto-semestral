@@ -3,6 +3,32 @@
 {% block css %}
 {% endblock %}
 {% block  contenido %}
+
+
+{% block js %}
+
+<script>
+	function eliminarProducto(id){
+		Swal.fire({
+			"title": "¿Estas seguro?",
+			"text": "esta acción no se puede deshacer",
+			"icon": "question",
+			"showCancelButton": true,
+			"cancelButtonText": "no, cancelar",
+			"confirmButtonText": "Si, eliminar",
+			"reverseButtons": true,
+			"confirmButtonColor": "#dc3545"
+		})
+		.then(function(result){
+			if(result.isConfirmed){
+				window.location.href = "/delete/"+id+"/"
+			}
+		})
+	}
+</script>
+
+{% endblock %}
+
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -21,112 +47,45 @@
 	<!-- products -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">Nuestros</span> Productos</h3>
+						<p>Lo mejor de nuestra comunidad.</p>
+					</div>
+				</div>
+			</div>
+	
+			<div class="row">
 			{% for aux in listaProducto %}
-				{% if aux.stock >= 0 %}			
-					<div class="row">
-						<div class="col-md-12">
-							<div class="product-filters">
-								<ul>
-									<li class="active" data-filter="*">All</li>
-									<li data-filter=".strawberry">Strawberry</li>
-									<li data-filter=".berry">Berry</li>
-									<li data-filter=".lemon">Lemon</li>
-								</ul>
+				{% if aux.stock >= 0 %}
+					<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item">
+							<div class="product-image">
+								<a href="{% url 'singleproduct' %}"><img src="{{ img.url }}" alt=""></a>
 							</div>
-						</div>
-					</div>
-
-					<div class="row product-lists">
-						<div class="col-lg-4 col-md-6 text-center strawberry">
-							<div class="single-product-item">
-								<div class="product-image">
-									<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/product-img-1.jpg' %}" alt=""></a>
-								</div>
-								<h3>semillasXD</h3>
+							<h3>{{ aux.nombre }}</h3>
+							<div class="pricing">
 								{% if aux.stock > 0 %}
-								<p>Stock: {{ aux.stock }} </p>
+									<p>Stock: {{ aux.stock }}</p>
 								{% else %}
-								<p>Stock: Producto agotado </p>
+									<p>Stock: Producto agotado</p>
 								{% endif %}
-								<p class="product-price"><span>Per Kg</span> ${{ aux.precio }} </p>
-								<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-								<a href="{% url 'update' aux.id %}" class="heart d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-color-wand"></i></span>
-									<a onclick="eliminarProducto({{ aux.id }})" class="heart d-flex justify-content-center align-items-center ">
-										<span><i class="ion-ios-trash"></i></span>
-									</a>
+								<p class="price"><span class="mr-2 price-dc">${{ aux.precio }}</span></p>
 							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 text-center berry">
-							<div class="single-product-item">
-								<div class="product-image">
-									<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/product-img-2.jpg' %}" alt=""></a>
-								</div>
-								<h3>Berry</h3>
-								<p class="product-price"><span>Per Kg</span> 70$ </p>
-								<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 text-center lemon">
-							<div class="single-product-item">
-								<div class="product-image">
-									<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/product-img-3.jpg' %}" alt=""></a>
-								</div>
-								<h3>Lemon</h3>
-								<p class="product-price"><span>Per Kg</span> 35$ </p>
-								<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 text-center">
-							<div class="single-product-item">
-								<div class="product-image">
-									<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/product-img-4.jpg' %}" alt=""></a>
-								</div>
-								<h3>Avocado</h3>
-								<p class="product-price"><span>Per Kg</span> 50$ </p>
-								<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 text-center">
-							<div class="single-product-item">
-								<div class="product-image">
-									<a href="single-product.html"><img src="{% static 'core/assets/img/products/product-img-5.jpg' %}" alt=""></a>
-								</div>
-								<h3>Green Apple</h3>
-								<p class="product-price"><span>Per Kg</span> 45$ </p>
-								<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 text-center strawberry">
-							<div class="single-product-item">
-								<div class="product-image">
-									<a href="{% url 'singleproduct' %}"><img src="{% static 'core/assets/img/products/product-img-6.jpg' %}" alt=""></a>
-								</div>
-								<h3>Strawberry</h3>
-								<p class="product-price"><span>Per Kg</span> 80$ </p>
-								<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-lg-12 text-center">
-							<div class="pagination-wrap">
-								<ul>
-									<li><a href="#">Prev</a></li>
-									<li><a href="#">1</a></li>
-									<li><a class="active" href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">Next</a></li>
-								</ul>
-							</div>
+							<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i></a>
+							<a href="{% url 'update' aux.id %}" class="cart-btn mt-3"><i class="fas fa-edit"></i></a>
+							<a href="{% url 'delete' aux.id %}" class="cart-btn mt-3"><i class="fas fa-trash-alt"></i></a>
+							
 						</div>
 					</div>
 				{% endif %}
 			{% endfor %}
+			</div>
 		</div>
 	</div>
-	<!-- end products -->
+	
+	<!-- end product section -->
 
 	<!-- logo carousel -->
 	<div class="logo-carousel-section">
@@ -155,7 +114,4 @@
 		</div>
 	</div>
 	<!-- end logo carousel -->
-	
-	{% endblock %}
-	{% block js %}
 	{% endblock %}
